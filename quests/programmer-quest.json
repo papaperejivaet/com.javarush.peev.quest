@@ -1,0 +1,137 @@
+{
+  "id": 1,
+  "name": "День программиста",
+  "questions": [
+    {
+      "id": 11,
+      "title": "Ты приходишь в офис и видишь, что твой ноутбук не включается.",
+      "content": "Что сделаешь?",
+      "answers": [
+        {
+          "content": "Попробую включить его снова.",
+          "currentQuestionId": 11,
+          "nextQuestionId": 12,
+          "isCorrect": true
+        },
+        {
+          "content": "Пойду за помощью к коллеге.",
+          "currentQuestionId": 11,
+          "nextQuestionId": 13,
+          "isCorrect": true
+        },
+        {
+          "content": "Сдамся и пойду пить лавандовый раф.",
+          "currentQuestionId": 11,
+          "nextQuestionId": 45,
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Ноутбук включился, и появляется странное окно с надписью «Выбор редакции: новый проект».",
+      "content": "Ты видишь три варианта фреймворка для нового проекта. Что выберешь?",
+      "answers": [
+        {
+          "content": "Spring (Java) — надёжно, но скучно.",
+          "currentQuestionId": 12,
+          "nextQuestionId": 21,
+          "isCorrect": true
+        },
+        {
+          "content": "Django (Python) — быстро, но может быть странно.",
+          "currentQuestionId": 12,
+          "nextQuestionId": 42,
+          "isCorrect": false
+        },
+        {
+          "content": "Ktor (Kotlin) — современно, но мало документации.",
+          "currentQuestionId": 12,
+          "nextQuestionId": 42,
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Коллега советует: «Попробуй включить ноутбук после перезагрузки сети».",
+      "content": "Сеть перезагрузилась, ноутбук включился. IDE предлагает выбрать шаблон проекта:",
+      "answers": [
+        {
+          "content": "Консольное приложение (Python).",
+          "currentQuestionId": 13,
+          "nextQuestionId": 42,
+          "isCorrect": false
+        },
+        {
+          "content": "Веб-приложение (Java Spring Boot).",
+          "currentQuestionId": 13,
+          "nextQuestionId": 21,
+          "isCorrect": true
+        },
+        {
+          "content": "Мобильное приложение (Kotlin).",
+          "currentQuestionId": 13,
+          "nextQuestionId": 42,
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Компилятор выдаёт ошибку «NullPointerException».",
+      "content": "Что будешь делать?",
+      "answers": [
+        {
+          "content": "Проверяю код внимательно.",
+          "currentQuestionId": 21,
+          "nextQuestionId": 31,
+          "isCorrect": true
+        },
+        {
+          "content": "Добавляю проверки if повсюду.",
+          "currentQuestionId": 21,
+          "nextQuestionId": 42,
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "title": "Ты находишь ошибку, но времени мало: сдача через 5 минут.",
+      "content": "Что сделаешь?",
+      "answers": [
+        {
+          "content": "Делаю финальные тесты.",
+          "currentQuestionId": 31,
+          "nextQuestionId": 41,
+          "isCorrect": true
+        },
+        {
+          "content": "Сдаю как есть, но с комментариями о возможных багах.",
+          "currentQuestionId": 31,
+          "nextQuestionId": 42,
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "title": "Финал: Ты настоящий профессионал!",
+      "content": "Проект идеален, коллеги аплодируют стоя.",
+      "answers": []
+    },
+    {
+      "id": 42,
+      "title": "Финал: Сдача с багами.",
+      "content": "Проект принят, но коллеги будут шептаться про твои «фичи».",
+      "answers": []
+    },
+    {
+      "id": 45,
+      "title": "Финал: Лавандовый раф.",
+      "content": "Ты решил, что здоровье дороже. День прошёл прекрасно и спокойно.",
+      "answers": []
+    }
+  ]
+}
