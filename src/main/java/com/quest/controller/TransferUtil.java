@@ -22,4 +22,25 @@ public class TransferUtil
             throw new RuntimeException(e);
         }
     }
+
+    public static void redirect(HttpServletRequest req, HttpServletResponse resp, String path)
+    {
+        try
+        {
+            resp.sendRedirect(req.getContextPath() + path);
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void redirectToHome(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            // Перенаправляем на стартовую страницу приложения
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

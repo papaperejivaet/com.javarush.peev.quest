@@ -5,10 +5,8 @@ import com.quest.model.Quest;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class QuestRepository
@@ -30,10 +28,9 @@ public class QuestRepository
         return instance;
     }
 
-    private final Map<Integer, Quest> cache = new ConcurrentHashMap<>();
+    private final Map<Long, Quest> cache = new ConcurrentHashMap<>();
 
-    //Для вызова в сервлете с кликом на ответ
-    public Quest loadQuestById(int id)
+    public Quest loadQuestById(Long id)
     {
         Quest quest = cache.get(id);
         if (quest == null)
@@ -43,21 +40,25 @@ public class QuestRepository
         return quest;
     }
 
-    public void addOrUpdateQuest(int id, Quest quest)
+    public void addOrUpdateQuest(Long id, Quest quest)
     {
         cache.put(id, quest);
     }
 
-    public void removeQuest(int id)
+    public void removeQuest(Long id)
     {
         cache.remove(id);
     }
 
-    public List<String> getQuestNames()
+    public Map<Long, String> getQuests()
     {
-        return cache.values().stream()
-                .map(Quest::getName)
-                .collect(Collectors.toList());
+        Map<Long, String> namesAndIds = new HashMap<>();
+        for (Quest quest : cache.values())
+        {
+            namesAndIds.put(quest.getId(), quest.getName());
+        }
+        return namesAndIds;
+
 
     }
 }

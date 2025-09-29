@@ -1,7 +1,11 @@
 package com.quest.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.io.File;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JsonPathUtil
 {
     public static String getJsonFolderPath() {

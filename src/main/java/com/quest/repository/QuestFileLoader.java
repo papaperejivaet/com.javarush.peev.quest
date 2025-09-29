@@ -22,7 +22,7 @@ public class QuestFileLoader
         }
     }
 
-    public Integer extractId(File file)
+    public Long extractId(File file)
     {
         String name = file.getName();
         int underscoreIndex = name.lastIndexOf('_');
@@ -31,7 +31,7 @@ public class QuestFileLoader
         {
             try
             {
-                return Integer.parseInt(name.substring(underscoreIndex + 1, dotIndex));
+                return Long.parseLong(name.substring(underscoreIndex + 1, dotIndex));
             }
             catch (NumberFormatException ignored)
             {

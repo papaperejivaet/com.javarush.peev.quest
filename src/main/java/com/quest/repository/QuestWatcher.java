@@ -148,6 +148,11 @@ public class QuestWatcher
         Path relativePath = (Path) event.context();
         Path fullPath = folderPath.resolve(relativePath);
 
+        // игнорирование временных файлов IDE
+        if (fullPath.getFileName().toString().endsWith("~")) {
+            return;
+        }
+
         if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE ||
                 event.kind() == StandardWatchEventKinds.ENTRY_MODIFY)
         {
@@ -157,5 +162,6 @@ public class QuestWatcher
         {
             eventHandler.onFileDelete(relativePath);
         }
+        System.out.println("Event kind: " + event.kind() + ", file: " + fullPath);
     }
 }

@@ -1,7 +1,6 @@
 package com.quest.repository;
 
 import com.quest.exception.FolderCreationException;
-
 import java.io.File;
 
 public class QuestRepositoryManager
@@ -24,12 +23,7 @@ public class QuestRepositoryManager
         initWatcher();
     }
 
-//    public void startWatcher() {
-//        if (watcher != null) {
-//            watcher.start();
-//        }
-//    }
-
+    //На будущее
     public void shutdownRepository()
     {
         if (watcher != null)
@@ -41,6 +35,7 @@ public class QuestRepositoryManager
     private void loadExistingQuests()
     {
         File folder = new File(folderPath);
+
         if (!folder.exists())
         {
             boolean isCreated = folder.mkdirs();
@@ -50,16 +45,15 @@ public class QuestRepositoryManager
             }
         }
 
-        File[] files = folder.listFiles(f -> f.getName().endsWith(".json"));
+        File[] files = folder.listFiles((dir, name) -> name.endsWith(".json"));
         if (files == null)
         {
             return;
         }
 
-
         for (File file : files)
         {
-            Integer id = loader.extractId(file);
+            Long id = loader.extractId(file);
             if (id != null)
             {
                 repository.addOrUpdateQuest(id, loader.loadQuest(file));
@@ -73,6 +67,4 @@ public class QuestRepositoryManager
         watcher = new QuestWatcher(folderPath, handler);
         watcher.start();
     }
-
-
 }

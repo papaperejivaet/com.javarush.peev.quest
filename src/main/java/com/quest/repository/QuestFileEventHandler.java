@@ -20,7 +20,7 @@ public class QuestFileEventHandler implements FileEventHandler
         if (!file.exists() || !file.getName().endsWith(".json"))
             return;
 
-        Integer id = loader.extractId(file);
+        Long id = loader.extractId(file);
         if (id == null)
             return;
         repository.addOrUpdateQuest(id, loader.loadQuest(file));
@@ -31,7 +31,7 @@ public class QuestFileEventHandler implements FileEventHandler
     public void onFileDelete(Path path)
     {
         File fakeFile = new File(path.getFileName().toString());
-        Integer id = loader.extractId(fakeFile);
+        Long id = loader.extractId(fakeFile);
         if (id != null) {
             repository.removeQuest(id);
         }

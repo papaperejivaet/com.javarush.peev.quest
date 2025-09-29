@@ -33,21 +33,21 @@
       "content": "Ты видишь три варианта фреймворка для нового проекта. Что выберешь?",
       "answers": [
         {
-          "content": "Spring (Java) — надёжно, но скучно.",
+          "content": "Spring (Java) — надёжно, но сложно.",
           "currentQuestionId": 12,
           "nextQuestionId": 21,
           "isCorrect": true
         },
         {
-          "content": "Django (Python) — быстро, но может быть странно.",
+          "content": "Django (Python) — быстро, но легко.",
           "currentQuestionId": 12,
-          "nextQuestionId": 42,
+          "nextQuestionId": 43,
           "isCorrect": false
         },
         {
           "content": "Ktor (Kotlin) — современно, но мало документации.",
           "currentQuestionId": 12,
-          "nextQuestionId": 42,
+          "nextQuestionId": 43,
           "isCorrect": false
         }
       ]
@@ -60,7 +60,7 @@
         {
           "content": "Консольное приложение (Python).",
           "currentQuestionId": 13,
-          "nextQuestionId": 42,
+          "nextQuestionId": 43,
           "isCorrect": false
         },
         {
@@ -72,7 +72,7 @@
         {
           "content": "Мобильное приложение (Kotlin).",
           "currentQuestionId": 13,
-          "nextQuestionId": 42,
+          "nextQuestionId": 43,
           "isCorrect": false
         }
       ]
@@ -127,6 +127,13 @@
       "content": "Проект принят, но коллеги будут шептаться про твои «фичи».",
       "answers": []
     },
+    {
+      "id": 43,
+      "title": "Финал: Предательство.",
+      "content": "Тебя все возненавидели за выбор другого языка.",
+      "answers": []
+    },
+
     {
       "id": 45,
       "title": "Финал: Лавандовый раф.",
