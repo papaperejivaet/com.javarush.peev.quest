@@ -1,5 +1,6 @@
-package com.quest.controller.servlet.request_utils;
+package com.quest.controller.request_utils;
 
+import com.quest.controller.ServletParam;
 import com.quest.model.Answer;
 import com.quest.model.Quest;
 import com.quest.model.Question;
@@ -20,7 +21,7 @@ public class RequestObjectExtractor
 
 
     public Question getCurrentQuestion(HttpServletRequest req, HttpServletResponse resp, Quest quest) {
-        String questionParam = paramExtractor.getParam(req, resp, "currentQuestionId");
+        String questionParam = paramExtractor.getParam(req, resp, ServletParam.CURRENT_QUESTION_ID);
         if (questionParam == null) return null;
 
         Long questionId = parser.parse(questionParam, Long::parseLong);
@@ -31,7 +32,7 @@ public class RequestObjectExtractor
 
 
     public Answer getAnswer(HttpServletRequest req, HttpServletResponse resp, Question question) {
-        String indexParam = paramExtractor.getParam(req, resp, "answerIndex");
+        String indexParam = paramExtractor.getParam(req, resp, ServletParam.ANSWER_INDEX);
         if (indexParam == null) return null;
 
         Integer index = parser.parse(indexParam, Integer::parseInt);

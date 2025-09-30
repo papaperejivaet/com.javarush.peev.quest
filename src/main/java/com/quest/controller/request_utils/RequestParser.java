@@ -1,4 +1,4 @@
-package com.quest.controller.servlet.request_utils;
+package com.quest.controller.request_utils;
 
 import java.util.function.Function;
 

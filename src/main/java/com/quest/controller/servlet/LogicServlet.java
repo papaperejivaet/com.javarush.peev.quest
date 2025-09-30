@@ -1,9 +1,12 @@
 package com.quest.controller.servlet;
 
+import com.quest.controller.ScoreManager;
+import com.quest.controller.ServletParam;
 import com.quest.controller.TransferAddress;
 import com.quest.controller.TransferUtil;
-import com.quest.controller.servlet.request_utils.RequestObjectExtractor;
-import com.quest.controller.servlet.request_utils.RequestValidator;
+import com.quest.controller.request_utils.RequestObjectExtractor;
+import com.quest.controller.request_utils.RequestParser;
+import com.quest.controller.request_utils.RequestValidator;
 import com.quest.model.Answer;
 import com.quest.model.Quest;
 import com.quest.model.Question;
@@ -24,9 +27,9 @@ public class LogicServlet extends HttpServlet
 
     @Override
     public void init() {
-        QuestRepository repository = QuestRepository.getInstance();
-        RequestObjectExtractor extractor = new RequestObjectExtractor();
-        validator = new RequestValidator(repository, extractor);
+        validator = new RequestValidator(QuestRepository.getInstance(),
+                 new RequestObjectExtractor(),
+                new RequestParser());
     }
 
     @Override
@@ -34,34 +37,41 @@ public class LogicServlet extends HttpServlet
         Quest quest = validator.validateAndGetQuest(req, resp);
         if (quest == null) return;
 
-        req.setAttribute("quest", quest);
+        req.setAttribute(ServletParam.QUEST, quest);
 
         Question firstQuestion = quest.getQuestions().get(GeneralConstants.FIRST_QUESTION_ID);
-        req.setAttribute("question", firstQuestion);
+        req.setAttribute(ServletParam.QUESTION, firstQuestion);
+
+        ScoreManager.resetScore(req.getSession());
 
         TransferUtil.forward(req, resp, TransferAddress.QUEST_PAGE);
     }
 
-    // POST — обработка ответа
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Quest quest = validator.validateAndGetQuest(req, resp);
         if (quest == null) return;
 
-        req.setAttribute("quest", quest);
+        req.setAttribute(ServletParam.QUEST, quest);
 
-        // Обработка выбранного ответа
         Answer selectedAnswer = validator.validateAndGetAnswer(req, resp, quest);
         if (selectedAnswer == null) return;
+        ScoreManager.addPoints(req.getSession(), selectedAnswer);
+
+        int currentScore = ScoreManager.getScore(req.getSession());
+        req.setAttribute(ServletParam.SCORE, currentScore);
 
         long nextQuestionId = selectedAnswer.getNextQuestionId();
         Question nextQuestion = quest.getQuestions().get(nextQuestionId);
 
         if (nextQuestion != null) {
-            req.setAttribute("question", nextQuestion);
-            TransferUtil.forward(req, resp, TransferAddress.QUEST_PAGE);
+            req.setAttribute(ServletParam.QUESTION, nextQuestion);
+            TransferUtil.forwardToCorrectPage(req, resp, nextQuestion);
         } else {
             TransferUtil.forward(req, resp, TransferAddress.FINAL_PAGE);
         }
     }
+
+
 }

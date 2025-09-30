@@ -164,4 +164,9 @@ public class QuestWatcher
         }
         System.out.println("Event kind: " + event.kind() + ", file: " + fullPath);
     }
+
+    public boolean isRunning()
+    {
+        return isRunning.get();
+    }
 }

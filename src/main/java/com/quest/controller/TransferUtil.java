@@ -1,5 +1,6 @@
 package com.quest.controller;
 
+import com.quest.model.Question;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,6 +42,20 @@ public class TransferUtil
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private static boolean isFinalQuestion(Question question) {
+        return question.getAnswers() == null || question.getAnswers().isEmpty();
+    }
+
+    public static void forwardToCorrectPage(HttpServletRequest req, HttpServletResponse resp, Question question)
+            throws ServletException, IOException {
+        if (isFinalQuestion(question)) {
+            req.setAttribute("score", ScoreManager.getScore(req.getSession()));
+            TransferUtil.forward(req, resp, TransferAddress.FINAL_PAGE);
+        } else {
+            TransferUtil.forward(req, resp, TransferAddress.QUEST_PAGE);
         }
     }
 }

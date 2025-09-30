@@ -1,5 +1,6 @@
-package com.quest.controller.servlet.request_utils;
+package com.quest.controller.request_utils;
 
+import com.quest.controller.ServletParam;
 import com.quest.controller.TransferUtil;
 import com.quest.model.Answer;
 import com.quest.model.Quest;
@@ -14,18 +15,20 @@ public class RequestValidator
 
     private final QuestRepository repository;
     private final RequestObjectExtractor extractor;
+    private final RequestParser parser;
 
-    public RequestValidator(QuestRepository repository, RequestObjectExtractor extractor) {
+    public RequestValidator(QuestRepository repository, RequestObjectExtractor extractor, RequestParser parser) {
         this.repository = repository;
         this.extractor = extractor;
+        this.parser = parser;
     }
 
     public Quest validateAndGetQuest(HttpServletRequest req, HttpServletResponse resp) {
         RequestParamExtractor paramExtractor = new RequestParamExtractor();
-        String questParam = paramExtractor.getParam(req, resp, "questId");
+        String questParam = paramExtractor.getParam(req, resp, ServletParam.QUEST_ID);
         if (questParam == null) return null;
 
-        Long questId = Long.parseLong(questParam);
+        Long questId = parser.parse(questParam, Long::parseLong);
         Quest quest = repository.loadQuestById(questId);
         if (quest == null) {
             TransferUtil.redirectToHome(req, resp);

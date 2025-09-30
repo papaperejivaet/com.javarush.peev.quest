@@ -60,10 +60,11 @@
       <version>2.20.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>RELEASE</version>
+      <version>1.18.42</version>
       <scope>provided</scope>
     </dependency>
 
@@ -86,7 +87,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>5.13.0</version>
+      <version>5.20.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -94,12 +95,37 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
-      <version>5.13.0</version>
+      <version>5.20.0</version>
       <scope>test</scope>
    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>4.3.0</version>
+      <scope>test</scope>
+    </dependency>
 </dependencies>
 
   <build>
-    <finalName>com.javarush.peev.quest</finalName><plugins><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration><source>15</source><target>15</target></configuration></plugin></plugins>
+    <finalName>com.javarush.peev.quest</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>24</source>
+          <target>24</target>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.42</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration></plugin>
+
+    </plugins>
   </build>
 </project>
