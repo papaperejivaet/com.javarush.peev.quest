@@ -1,8 +1,7 @@
 package com.quest.repository;
 
-import com.quest.exception.EventsRegisterException;
-import com.quest.exception.WatchServiceReceiveException;
-import lombok.Getter;
+import com.quest.exception.watcher.EventsRegisterException;
+import com.quest.exception.watcher.WatchServiceReceiveException;
 
 import java.io.IOException;
 import java.nio.file.*;

@@ -1,6 +1,6 @@
 package com.quest.repository;
 
-import com.quest.exception.FolderCreationException;
+import com.quest.exception.files.FolderCreationException;
 import java.io.File;
 
 public class QuestRepositoryManager

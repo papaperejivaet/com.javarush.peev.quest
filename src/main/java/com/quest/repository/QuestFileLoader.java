@@ -1,6 +1,6 @@
 package com.quest.repository;
 
-import com.quest.exception.FileMappingException;
+import com.quest.exception.files.FileMappingException;
 import com.quest.model.Quest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

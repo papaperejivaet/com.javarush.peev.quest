@@ -12,12 +12,12 @@ public class ScoreManager
     public static void addPoints(HttpSession session, Answer answer) {
         if (answer != null && answer.isCorrect()) {
             int currentScore = getScore(session);
-            session.setAttribute(ServletParam.SCORE.toString(), currentScore + GeneralConstants.POINTS_PER_CORRECT_ANSWER);
+            session.setAttribute(ServletParam.SCORE, currentScore + GeneralConstants.POINTS_PER_CORRECT_ANSWER);
         }
     }
 
     public static int getScore(HttpSession session) {
-        Object scoreObj = session.getAttribute(ServletParam.SCORE.toString());
+        Object scoreObj = session.getAttribute(ServletParam.SCORE);
         if (scoreObj instanceof Integer) {
             return (Integer) scoreObj;
         }
@@ -26,6 +26,6 @@ public class ScoreManager
 
 
     public static void resetScore(HttpSession session) {
-        session.setAttribute(ServletParam.SCORE.toString(), 0);
+        session.setAttribute(ServletParam.SCORE, 0);
     }
 }

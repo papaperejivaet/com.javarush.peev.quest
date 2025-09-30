@@ -1,4 +1,4 @@
-package com.quest.exception;
+package com.quest.exception.watcher;
 
 import java.io.IOException;
 

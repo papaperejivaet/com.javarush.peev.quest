@@ -1,5 +1,7 @@
 package com.quest.controller;
 
+import com.quest.exception.transfer.ForwardException;
+import com.quest.exception.transfer.RedirectException;
 import com.quest.model.Question;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import java.io.IOException;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TransferUtil
 {
+
     public static void forward(HttpServletRequest req, HttpServletResponse resp, String path)
     {
         try
@@ -20,7 +23,7 @@ public class TransferUtil
         }
         catch (ServletException | IOException e)
         {
-            throw new RuntimeException(e);
+            throw new ForwardException("While trying to forward to \"" + path + "\"");
         }
     }
 
@@ -32,30 +35,30 @@ public class TransferUtil
         }
         catch (IOException e)
         {
-            throw new RuntimeException(e);
+            throw new RedirectException("While trying to redirect to \"" + path + "\"");
         }
     }
 
-    public static void redirectToHome(HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            // Перенаправляем на стартовую страницу приложения
-            resp.sendRedirect(req.getContextPath() + "/");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static boolean isFinalQuestion(Question question) {
-        return question.getAnswers() == null || question.getAnswers().isEmpty();
+    public static void redirectToHome(HttpServletRequest req, HttpServletResponse resp)
+    {
+        redirect(req, resp, TransferAddress.HOME_PAGE);
     }
 
     public static void forwardToCorrectPage(HttpServletRequest req, HttpServletResponse resp, Question question)
-            throws ServletException, IOException {
-        if (isFinalQuestion(question)) {
+    {
+        if (isFinalQuestion(question))
+        {
             req.setAttribute("score", ScoreManager.getScore(req.getSession()));
             TransferUtil.forward(req, resp, TransferAddress.FINAL_PAGE);
-        } else {
+        }
+        else
+        {
             TransferUtil.forward(req, resp, TransferAddress.QUEST_PAGE);
         }
+    }
+
+    private static boolean isFinalQuestion(Question question)
+    {
+        return question.getAnswers() == null || question.getAnswers().isEmpty();
     }
 }
