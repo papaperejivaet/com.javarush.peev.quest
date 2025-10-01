@@ -1,6 +1,8 @@
 package com.quest.repository;
 
 import com.quest.exception.files.FolderCreationException;
+import com.quest.model.Quest;
+
 import java.io.File;
 
 public class QuestRepositoryManager
@@ -53,11 +55,9 @@ public class QuestRepositoryManager
 
         for (File file : files)
         {
-            Long id = loader.extractId(file);
-            if (id != null)
-            {
-                repository.addOrUpdateQuest(id, loader.loadQuest(file));
-            }
+            Quest quest = loader.loadQuest(file);
+            repository.addOrUpdateQuest(quest);
+
         }
     }
 

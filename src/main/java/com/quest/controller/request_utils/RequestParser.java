@@ -7,7 +7,7 @@ public class RequestParser
         public <T> T parse(String value, Function<String, T> parser) {
             try {
                 return parser.apply(value);
-            } catch (Exception e) {
+            } catch (Exception _) {
                 return null;
             }
         }

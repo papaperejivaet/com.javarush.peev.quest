@@ -4,7 +4,7 @@ import com.quest.controller.ScoreManager;
 import com.quest.controller.ServletParam;
 import com.quest.controller.TransferAddress;
 import com.quest.controller.TransferUtil;
-import com.quest.controller.request_utils.RequestObjectExtractor;
+import com.quest.controller.request_utils.RequestParamExtractor;
 import com.quest.controller.request_utils.RequestParser;
 import com.quest.controller.request_utils.RequestValidator;
 import com.quest.model.Answer;
@@ -28,7 +28,7 @@ public class LogicServlet extends HttpServlet
     @Override
     public void init() {
         validator = new RequestValidator(QuestRepository.getInstance(),
-                 new RequestObjectExtractor(),
+                 new RequestParamExtractor(),
                 new RequestParser());
     }
 

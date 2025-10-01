@@ -35,14 +35,14 @@ Quest App позволяет загружать квесты в формате J
           "currentQuestionId": 101,
           "nextQuestionId": 104,
           "isCorrect": true
-        }, 
-         {
-            "id": 999,
-            "title": "Final Question Title",
-            "content": "Description of the final scenario or situation.",
-            "answers": []
-         }
+        }
       ]
+    },
+    {
+      "id": 999,
+      "title": "Final Question Title",
+      "content": "Description of the final scenario or situation.",
+      "answers": []
     }
   ]
 }
@@ -75,7 +75,7 @@ sample-quest_1.json
 ## 📑 Структура проекта
 ```
 src/main/java/com/quest/   # Java-код (servlets, utils, repository и т.д.)
-src/main/webapp/jsp        # JSP-страницы и статические ресурсы
+src/main/webapp/jsp        # JSP-страницы
 quests/                    # Папка с квестами (JSON)
 ```
 

@@ -40,14 +40,25 @@ public class QuestRepository
         return quest;
     }
 
-    public void addOrUpdateQuest(Long id, Quest quest)
+    public void addOrUpdateQuest(Quest quest)
     {
-        cache.put(id, quest);
+        Long id = quest.getId();
+        String name = quest.getName();
+
+        if (id == null || name == null)
+        {
+            return;
+        }
+
+        if (!cache.containsKey(id) || cache.get(id).getName().equals(name))
+        {
+            cache.put(id, quest);
+        }
     }
 
     public void removeQuest(Long id)
     {
-        cache.remove(id);
+        cache.computeIfPresent(id, (k, v) -> null);
     }
 
     public Map<Long, String> getQuests()
@@ -58,7 +69,6 @@ public class QuestRepository
             namesAndIds.put(quest.getId(), quest.getName());
         }
         return namesAndIds;
-
 
     }
 }
